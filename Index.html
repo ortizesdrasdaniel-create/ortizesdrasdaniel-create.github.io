@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégia Nota 1000 - ENEM</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .mindmap-node {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mindmap-connection {
+            stroke-dasharray: 5;
+            animation: dash 30s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(203, 213, 225, 1);
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(30, 41, 59, 1);
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(71, 85, 105, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+
+    <!-- Header -->
+    <header class="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 dark:bg-slate-900/80 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-xl">
+                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">Gabarito ENEM: Redação 1000</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Estratégias Práticas e Repertórios de Alto Impacto</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle -->
+                <button id="themeToggle" class="p-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 dark:border-slate-800 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- Instruções Rápidas -->
+        <div class="bg-gradient-to-r from-emerald-500/10 via-indigo-500/10 to-transparent p-6 rounded-2xl border border-emerald-500/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1">
+                <h2 class="text-lg font-bold text-emerald-900 dark:text-emerald-300 flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-emerald-500"></i>
+                    Foco Máximo na Grade de Correção
+                </h2>
+                <p class="text-sm text-slate-600 dark:text-slate-400 max-w-2xl">
+                    Clique nos eixos do mapa ou use o novo painel de fusão de temas abaixo para estudar propostas cruzadas que conectam perfeitamente múltiplos problemas em uma única tese nota 1000.
+                </p>
+            </div>
+            <div class="flex items-center gap-2 bg-white dark:bg-slate-900 p-2.5 rounded-xl shadow-sm border border-slate-200/50 dark:border-slate-800/50 self-start md:self-auto">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span class="text-xs font-semibold text-slate-600 dark:text-slate-300">Modo Professor Ativo</span>
+            </div>
+        </div>
+
+        <!-- NOVO: Seletor de Fusão de Temas Cruzados -->
+        <div class="bg-gradient-to-r from-indigo-500/5 to-purple-500/5 border border-indigo-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm space-y-4">
+            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
+                <i data-lucide="git-merge" class="w-5 h-5"></i>
+                <h3 class="font-extrabold text-base">Mesclar Eixos Temáticos (Análise Cruzada)</h3>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+                O ENEM adora cobrar problemas integrados. Selecione uma das conexões abaixo para carregar definições, filósofos e intervenções de impacto duplo que conectam dois temas de uma vez só!
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <button onclick="selectTheme('fusao_desigualdade_trabalho')" id="node-fusao_desigualdade_trabalho" class="mindmap-node p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-left hover:border-indigo-500/50 transition-all text-xs">
+                    <span class="font-bold block text-slate-800 dark:text-slate-200">Desigualdade + Trab. Infantil</span>
+                    <span class="text-[10px] text-slate-400">Como a escassez gera o labor precoce</span>
+                </button>
+                <button onclick="selectTheme('fusao_desigualdade_politicos')" id="node-fusao_desigualdade_politicos" class="mindmap-node p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-left hover:border-indigo-500/50 transition-all text-xs">
+                    <span class="font-bold block text-slate-800 dark:text-slate-200">Desigualdade + Prob. Políticos</span>
+                    <span class="text-[10px] text-slate-400">Inércia estatal e segregação civil</span>
+                </button>
+                <button onclick="selectTheme('fusao_trabalho_politicos')" id="node-fusao_trabalho_politicos" class="mindmap-node p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-left hover:border-indigo-500/50 transition-all text-xs">
+                    <span class="font-bold block text-slate-800 dark:text-slate-200">Trab. Infantil + Prob. Políticos</span>
+                    <span class="text-[10px] text-slate-400">Falha legislativa na proteção à infância</span>
+                </button>
+                <button onclick="selectTheme('fusao_completa')" id="node-fusao_completa" class="mindmap-node p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-left hover:border-indigo-500/50 transition-all text-xs">
+                    <span class="font-bold block text-slate-800 dark:text-slate-200">Visão Sistêmica (Os 3 Eixos)</span>
+                    <span class="text-[10px] text-slate-400">Desigualdade, Labor e Omissão Estatal</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Layout de Duas Colunas -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Coluna Esquerda: Mapa Mental & Simulador (7 Cols) -->
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- Card do Mapa Mental Interativo -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm overflow-hidden relative">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-lg flex items-center gap-2">
+                            <i data-lucide="network" class="text-emerald-500"></i>
+                            Eixos Fundamentais Isolados
+                        </h3>
+                        <span class="text-xs text-slate-400">Selecione para focar em um eixo único</span>
+                    </div>
+
+                    <!-- Estrutura do Mapa Mental Virtual -->
+                    <div class="relative min-h-[420px] flex flex-col justify-between py-4 items-center gap-8">
+                        
+                        <!-- Core / Central Node -->
+                        <div class="z-10 bg-slate-900 text-white dark:bg-white dark:text-slate-950 px-6 py-4 rounded-2xl shadow-xl border border-slate-800/50 dark:border-slate-200/50 text-center max-w-[280px]">
+                            <span class="text-[10px] uppercase tracking-widest font-extrabold text-emerald-400 dark:text-emerald-600 block mb-1">ENEM NOTA 1000</span>
+                            <h4 class="font-black text-base">Problemas Estruturais do Brasil</h4>
+                        </div>
+
+                        <!-- Branches/Nodes Wrapper -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full relative z-10">
+                            
+                            <!-- Node 1: Desigualdade Social -->
+                            <button onclick="selectTheme('desigualdade')" id="node-desigualdade" class="mindmap-node bg-slate-50 dark:bg-slate-800/40 border-2 border-slate-200 dark:border-slate-800 p-4 rounded-2xl text-left hover:border-emerald-500/50 focus:outline-none hover:shadow-lg group">
+                                <div class="flex items-start gap-3">
+                                    <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                                        <i data-lucide="arrow-down-narrow-wide" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-sm text-slate-800 dark:text-slate-200">Desigualdade Social</h5>
+                                        <p class="text-[11px] text-slate-400 mt-1">Eixo Econômico & Social</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <!-- Node 2: Trabalho Infantil -->
+                            <button onclick="selectTheme('trabalho')" id="node-trabalho" class="mindmap-node bg-slate-50 dark:bg-slate-800/40 border-2 border-slate-200 dark:border-slate-800 p-4 rounded-2xl text-left hover:border-emerald-500/50 focus:outline-none hover:shadow-lg group">
+                                <div class="flex items-start gap-3">
+                                    <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-300">
+                                        <i data-lucide="toy-brick" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-sm text-slate-800 dark:text-slate-200">Trabalho Infantil</h5>
+                                        <p class="text-[11px] text-slate-400 mt-1">Eixo de Proteção Básica</p>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <!-- Node 3: Problemas Políticos -->
+                            <button onclick="selectTheme('politicos')" id="node-politicos" class="mindmap-node bg-slate-50 dark:bg-slate-800/40 border-2 border-slate-200 dark:border-slate-800 p-4 rounded-2xl text-left hover:border-emerald-500/50 focus:outline-none hover:shadow-lg group">
+                                <div class="flex items-start gap-3">
+                                    <div class="p-2 rounded-lg bg-violet-500/10 text-violet-600 dark:text-violet-400 group-hover:bg-violet-500 group-hover:text-white transition-colors duration-300">
+                                        <i data-lucide="landmark" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-sm text-slate-800 dark:text-slate-200">Problemas Políticos</h5>
+                                        <p class="text-[11px] text-slate-400 mt-1">Eixo da Cidadania & Estado</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulador de Nota de Intervenção (C5) -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-lg flex items-center gap-2">
+                            <i data-lucide="award" class="text-amber-500"></i>
+                            Checklist e Simulador: Competência V (+200 Pontos)
+                        </h3>
+                        <div id="c5-score" class="px-3 py-1 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-extrabold text-sm rounded-full">
+                            0 / 200 Pontos
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-6">Selecione os elementos obrigatórios que você incluiu na sua proposta para simular sua pontuação oficial do Enem.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                        <button onclick="toggleElement('agente')" id="chk-agente" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-left transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 flex flex-col justify-between min-h-[100px]">
+                            <i data-lucide="user-check" class="w-5 h-5 text-slate-400"></i>
+                            <div>
+                                <h5 class="font-bold text-xs text-slate-700 dark:text-slate-300">Agente</h5>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Quem faz?</p>
+                            </div>
+                        </button>
+                        <button onclick="toggleElement('acao')" id="chk-acao" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-left transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 flex flex-col justify-between min-h-[100px]">
+                            <i data-lucide="play" class="w-5 h-5 text-slate-400"></i>
+                            <div>
+                                <h5 class="font-bold text-xs text-slate-700 dark:text-slate-300">Ação</h5>
+                                <p class="text-[10px] text-slate-400 mt-0.5">O que faz?</p>
+                            </div>
+                        </button>
+                        <button onclick="toggleElement('meio')" id="chk-meio" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-left transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 flex flex-col justify-between min-h-[100px]">
+                            <i data-lucide="help-circle" class="w-5 h-5 text-slate-400"></i>
+                            <div>
+                                <h5 class="font-bold text-xs text-slate-700 dark:text-slate-300">Meio/Modo</h5>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Como faz?</p>
+                            </div>
+                        </button>
+                        <button onclick="toggleElement('efeito')" id="chk-efeito" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-left transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 flex flex-col justify-between min-h-[100px]">
+                            <i data-lucide="target" class="w-5 h-5 text-slate-400"></i>
+                            <div>
+                                <h5 class="font-bold text-xs text-slate-700 dark:text-slate-300">Efeito</h5>
+                                <p class="text-[10px] text-slate-400 mt-0.5 font-medium">Para que faz?</p>
+                            </div>
+                        </button>
+                        <button onclick="toggleElement('detalhamento')" id="chk-detalhamento" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-left transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 flex flex-col justify-between min-h-[100px]">
+                            <i data-lucide="plus" class="w-5 h-5 text-slate-400"></i>
+                            <div>
+                                <h5 class="font-bold text-xs text-slate-700 dark:text-slate-300">Detalhamento</h5>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Explicação extra</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Coluna Direita: Dados de Estudo Ativo e Geração de Parágrafo (5 Cols) -->
+            <div class="lg:col-span-5 space-y-8">
+                
+                <!-- Card de Detalhamento do Tema Ativo -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-6">
+                    <div class="flex items-center gap-2">
+                        <span id="badge-tema" class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full">
+                            Tema Ativo
+                        </span>
+                        <h4 id="detalhe-titulo" class="font-extrabold text-xl">Selecione um Eixo</h4>
+                    </div>
+
+                    <!-- Definição de 2 Linhas -->
+                    <div class="space-y-2">
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i data-lucide="bookmark-check" class="w-3.5 h-3.5"></i> Definição Corretiva (C2)
+                        </span>
+                        <p id="detalhe-definicao" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic border-l-4 border-slate-300 dark:border-slate-700 pl-4">
+                            Selecione um eixo temático no mapa interativo para ler o conteúdo conceitual focado em nota máxima.
+                        </p>
+                    </div>
+
+                    <!-- Repertório -->
+                    <div class="space-y-2 bg-slate-50 dark:bg-slate-800/40 p-4 rounded-2xl relative overflow-hidden group">
+                        <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i data-lucide="quote" class="w-3.5 h-3.5"></i> Repertório de Autoridade (C2)
+                        </span>
+                        <div class="flex items-start justify-between gap-4 mt-2">
+                            <div>
+                                <h5 id="detalhe-autor" class="font-bold text-sm text-slate-900 dark:text-white">-</h5>
+                                <p id="detalhe-repertorio" class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                    Nenhum filósofo/sociólogo carregado.
+                                </p>
+                            </div>
+                            <button onclick="copyToClipboard('repertorio')" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 hover:text-slate-800 transition-all flex-shrink-0">
+                                <i data-lucide="copy" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Duas Intervenções Práticas -->
+                    <div class="space-y-3">
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+                            <i data-lucide="wrench" class="w-3.5 h-3.5"></i> Propostas de Intervenção Validadas (C5)
+                        </span>
+                        
+                        <div class="space-y-3">
+                            <!-- Proposta 1 -->
+                            <div class="p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-2">
+                                <h6 class="text-xs font-extrabold text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                                    <span class="w-5 h-5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-[11px] font-black flex items-center justify-center">1</span>
+                                    Proposta Corretiva Principal
+                                </h6>
+                                <p id="detalhe-p1" class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">-</p>
+                            </div>
+
+                            <!-- Proposta 2 -->
+                            <div class="p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-2">
+                                <h6 class="text-xs font-extrabold text-slate-700 dark:text-slate-300 flex items-center gap-2">
+                                    <span class="w-5 h-5 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 text-[11px] font-black flex items-center justify-center">2</span>
+                                    Proposta Corretiva Secundária
+                                </h6>
+                                <p id="detalhe-p2" class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card de Inteligência Artificial: Gerador de Parágrafo (C2/C3/C5) -->
+                <div class="bg-gradient-to-br from-indigo-950 to-slate-900 dark:from-slate-950 dark:to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden border border-indigo-500/20">
+                    <div class="relative z-10 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-base flex items-center gap-2">
+                                <i data-lucide="wand-2" class="text-indigo-400"></i>
+                                Gerador de Parágrafo Inteligente
+                            </h4>
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-extrabold uppercase px-2.5 py-1 rounded-full border border-indigo-500/30">Otimizado 30 Linhas</span>
+                        </div>
+                        <p class="text-xs text-indigo-200/80 leading-relaxed">
+                            Gere parágrafos calibrados para que sua redação inteira caiba perfeitamente no limite oficial de 30 linhas do ENEM.
+                        </p>
+
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase text-indigo-300 tracking-wider mb-1.5">Estrutura Desejada</label>
+                                <select id="ai-paragraph-type" class="w-full text-xs rounded-xl bg-slate-800/80 border border-slate-700 p-3 text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all">
+                                    <option value="introducao">Introdução (Aprox. 6 a 7 linhas na folha)</option>
+                                    <option value="desenvolvimento1">Desenvolvimento 1 (Aprox. 7 a 8 linhas na folha)</option>
+                                    <option value="desenvolvimento2">Desenvolvimento 2 (Aprox. 7 a 8 linhas na folha)</option>
+                                    <option value="conclusao">Conclusão Completa C5 (Aprox. 8 a 9 linhas na folha)</option>
+                                </select>
+                            </div>
+
+                            <button onclick="generateAIParticle()" id="ai-btn" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-md shadow-emerald-500/10">
+                                <i data-lucide="play" class="w-4 h-4 fill-slate-950 text-slate-950"></i>
+                                Gerar Esboço Estruturado
+                            </button>
+                        </div>
+
+                        <!-- Resultado da IA com Medidor de Linhas -->
+                        <div id="ai-result-box" class="hidden space-y-3 mt-4 transition-all">
+                            
+                            <!-- Medidor de Linhas Dinâmico -->
+                            <div class="bg-slate-950/40 p-3 rounded-xl border border-slate-800 space-y-2">
+                                <div class="flex justify-between items-center text-[11px]">
+                                    <span class="text-slate-400 flex items-center gap-1">
+                                        <i data-lucide="align-left" class="w-3.5 h-3.5 text-indigo-400"></i>
+                                        Estimativa de Espaço Ocupado (Individual)
+                                    </span>
+                                    <span id="line-counter" class="font-extrabold text-emerald-400">0 / 30 linhas</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                                    <div id="line-progress-bar" class="bg-emerald-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                                <p id="line-feedback" class="text-[10px] text-slate-400 italic"></p>
+                            </div>
+
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="text-[10px] text-slate-400 tracking-wider uppercase">Parágrafo Padrão ENEM</span>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="addToDraft()" class="px-2.5 py-1 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/35 border border-emerald-500/40 text-[10px] font-bold rounded-lg flex items-center gap-1 transition-all">
+                                        <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> Adicionar à Redação
+                                    </button>
+                                    <button onclick="copyToClipboard('ai-result')" class="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-all">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="ai-result" class="bg-slate-950/80 border border-slate-800 p-4 rounded-xl text-xs text-slate-300 max-h-60 overflow-y-auto leading-relaxed font-sans whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Área de Construção da Redação Nota 1000 Completa -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 p-6 shadow-sm space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 dark:border-slate-800 pb-5">
+                <div class="space-y-1">
+                    <h3 class="font-bold text-lg flex items-center gap-2">
+                        <i data-lucide="book-open" class="text-emerald-500"></i>
+                        Área de Rascunho da Redação Completa (Máx. 30 Linhas)
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Junte e conecte seus parágrafos em um único texto contínuo adaptado às regras do ENEM.</p>
+                </div>
+                
+                <!-- Monitor de Linhas Acumulado -->
+                <div class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-200/60 dark:border-slate-800 w-full md:w-auto">
+                    <div class="space-y-1 flex-1 md:flex-initial">
+                        <div class="flex justify-between md:justify-start items-center gap-2 text-xs">
+                            <span class="font-bold">Total Acumulado:</span>
+                            <span id="full-essay-line-counter" class="font-black text-emerald-500 dark:text-emerald-400">0 / 30 linhas</span>
+                        </div>
+                        <div class="w-full md:w-48 bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+                            <div id="full-essay-progress-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button onclick="clearFullEssay()" class="p-2 text-rose-500 hover:bg-rose-500/10 rounded-lg transition-colors" title="Limpar tudo">
+                        <i data-lucide="trash-2" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Colunas de Composição: Slots Individuais vs Folha de Redação Unificada -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Slots Editáveis Individuais (5 Cols) -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Parágrafos da Redação</h4>
+                        <span class="text-[10px] text-slate-400">Edite ou cole nos slots abaixo</span>
+                    </div>
+
+                    <!-- Slot Introdução -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center">
+                            <label class="text-xs font-extrabold text-slate-700 dark:text-slate-300">Introdução</label>
+                            <span id="lines-intro" class="text-[10px] text-slate-400">0 linhas</span>
+                        </div>
+                        <textarea id="slot-introducao" oninput="compileFullEssay()" class="w-full h-24 p-3 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none" placeholder="Gere no painel ou digite a introdução aqui..."></textarea>
+                    </div>
+
+                    <!-- Slot Desenvolvimento 1 -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-1">
+                                <label class="text-xs font-extrabold text-slate-700 dark:text-slate-300">Desenvolvimento 1</label>
+                                <div class="relative group">
+                                    <i data-lucide="help-circle" class="w-3.5 h-3.5 text-slate-400 cursor-pointer"></i>
+                                    <div class="absolute left-0 bottom-full mb-1.5 hidden group-hover:block bg-slate-900 text-white text-[10px] p-2 rounded-lg w-48 shadow-lg z-30">
+                                        Comece com conectivos de introdução argumentativa: "Nesse cenário...", "Diante desse panorama..."
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="lines-desenvolvimento1" class="text-[10px] text-slate-400">0 lines</span>
+                        </div>
+                        <div class="flex gap-2 mb-1">
+                            <button onclick="insertConnector('slot-desenvolvimento1', 'Nesse cenário, ')" class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500/10 text-slate-600 dark:text-slate-300 text-[9px] rounded font-semibold border border-slate-200 dark:border-slate-700">+"Nesse cenário"</button>
+                            <button onclick="insertConnector('slot-desenvolvimento1', 'Diante desse panorama, ')" class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500/10 text-slate-600 dark:text-slate-300 text-[9px] rounded font-semibold border border-slate-200 dark:border-slate-700">+"Diante desse panorama"</button>
+                        </div>
+                        <textarea id="slot-desenvolvimento1" oninput="compileFullEssay()" class="w-full h-24 p-3 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none" placeholder="Gere no painel ou digite o D1 aqui..."></textarea>
+                    </div>
+
+                    <!-- Slot Desenvolvimento 2 -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-1">
+                                <label class="text-xs font-extrabold text-slate-700 dark:text-slate-300">Desenvolvimento 2</label>
+                                <div class="relative group">
+                                    <i data-lucide="help-circle" class="w-3.5 h-3.5 text-slate-400 cursor-pointer"></i>
+                                    <div class="absolute left-0 bottom-full mb-1.5 hidden group-hover:block bg-slate-900 text-white text-[10px] p-2 rounded-lg w-48 shadow-lg z-30">
+                                        Use conectivos interparágrafos aditivos: "Ademais...", "Outrossim...", "Além disso..."
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="lines-desenvolvimento2" class="text-[10px] text-slate-400">0 lines</span>
+                        </div>
+                        <div class="flex gap-2 mb-1">
+                            <button onclick="insertConnector('slot-desenvolvimento2', 'Ademais, ')" class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500/10 text-slate-600 dark:text-slate-300 text-[9px] rounded font-semibold border border-slate-200 dark:border-slate-700">+"Ademais"</button>
+                            <button onclick="insertConnector('slot-desenvolvimento2', 'Outrossim, ')" class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500/10 text-slate-600 dark:text-slate-300 text-[9px] rounded font-semibold border border-slate-200 dark:border-slate-700">+"Outrossim"</button>
+                        </div>
+                        <textarea id="slot-desenvolvimento2" oninput="compileFullEssay()" class="w-full h-24 p-3 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none" placeholder="Gere no painel ou digite o D2 aqui..."></textarea>
+                    </div>
+
+                    <!-- Slot Conclusão -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-1">
+                                <label class="text-xs font-extrabold text-slate-700 dark:text-slate-300">Conclusão (C5)</label>
+                                <div class="relative group">
+                                    <i data-lucide="help-circle" class="w-3.5 h-3.5 text-slate-400 cursor-pointer"></i>
+                                    <div class="absolute left-0 bottom-full mb-1.5 hidden group-hover:block bg-slate-900 text-white text-[10px] p-2 rounded-lg w-48 shadow-lg z-30">
+                                        Use conectivos conclusivos de alto impacto: "Portanto...", "Infere-se, portanto, que..."
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="lines-conclusao" class="text-[10px] text-slate-400">0 lines</span>
+                        </div>
+                        <div class="flex gap-2 mb-1">
+                            <button onclick="insertConnector('slot-conclusao', 'Portanto, ')" class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500/10 text-slate-600 dark:text-slate-300 text-[9px] rounded font-semibold border border-slate-200 dark:border-slate-700">+"Portanto"</button>
+                            <button onclick="insertConnector('slot-conclusao', 'Infere-se, portanto, que ')" class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500/10 text-slate-600 dark:text-slate-300 text-[9px] rounded font-semibold border border-slate-200 dark:border-slate-700">+"Infere-se..."</button>
+                        </div>
+                        <textarea id="slot-conclusao" oninput="compileFullEssay()" class="w-full h-24 p-3 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none" placeholder="Gere no painel ou digite a conclusão aqui..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Folha de Redação Unificada Final (7 Cols) -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Folha de Redação Oficial (Visualização de Linhas)</span>
+                        <button onclick="copyToClipboard('full-essay')" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors shadow-sm">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Redação Completa
+                        </button>
+                    </div>
+
+                    <!-- Estrutura Gráfica da Folha ENEM -->
+                    <div class="bg-amber-50/25 dark:bg-slate-900 border border-amber-200/50 dark:border-slate-800 rounded-2xl p-6 relative shadow-inner min-h-[580px] flex flex-col">
+                        <div class="absolute inset-y-0 left-12 w-0.5 bg-rose-200/40 dark:bg-rose-950/40 pointer-events-none"></div>
+                        
+                        <div id="lines-grid" class="space-y-[22px] font-sans text-xs text-slate-700 dark:text-slate-300 leading-[22px] flex-1 z-10 select-text">
+                            <!-- Gerado dinamicamente com as linhas numeradas -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification System -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 ease-out flex items-center gap-2 bg-slate-900 text-white dark:bg-white dark:text-slate-950 px-4 py-3 rounded-2xl shadow-xl border border-slate-800/50 dark:border-slate-200/50">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500"></i>
+        <span id="toast-text" class="text-xs font-semibold">Copiado com sucesso!</span>
+    </div>
+
+    <script>
+        // API Key Constraint
+        const apiKey = ""; 
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Database Eixos Temáticos (Incluindo as FUSÕES solicitadas)
+        const temasDb = {
+            desigualdade: {
+                titulo: "Desigualdade Social",
+                badge: "Social & Econômico",
+                definicao: "Disparidade socioeconômica estrutural que marginaliza frações vulneráveis da população brasileira, impossibilitando a ascensão econômica e a garantia prática de preceitos básicos como educação, saneamento básico e saúde.",
+                autor: "Jessé Souza (Sociólogo Brasileiro)",
+                repertorio: "Na obra 'A Ralé Brasileira', o autor explica que a desigualdade social no Brasil é estruturada historicamente, de modo a naturalizar a subcidadania e perpetuar um contingente populacional excluído dos processos de mobilidade social legítima.",
+                p1: "Ministério da Fazenda (Agente) deve realizar uma reforma tributária progressiva (Ação), por meio da tributação de lucros, dividendos e heranças bilionárias combinada à desoneração do imposto sobre o consumo das classes populares (Meio), com a finalidade de atenuar a concentração patrimonial e financiar infraestruturas básicas periféricas (Efeito), detalhando o direcionamento específico destas verbas ao Fundo de Combate à Pobreza municipal.",
+                p2: "Ministério da Educação (Agente) deve viabilizar a equalização de oportunidades (Ação), mediante a ampliação do programa de escolas de tempo integral nas microrregiões com menor IDH do país (Meio), a fim de resguardar o acesso à formação técnica de ponta aos estudantes de baixa renda (Efeito), detalhando o processo através do repasse direto do Fundo Nacional de Desenvolvimento da Educação (FNDE)."
+            },
+            trabalho: {
+                titulo: "Trabalho Infantil",
+                badge: "Proteção de Direitos",
+                definicao: "Exploração laboral que retira a dignidade, impede o desenvolvimento regular escolar e o gozo da infância de vulneráveis, constituindo um ciclo contínuo de escassez socioeconômica que gera reincidência de evasão acadêmica.",
+                autor: "Hannah Arendt (Filósofa Alemã)",
+                repertorio: "O conceito de 'A Banalidade do Mal' pode ser associado à naturalização social da exploração infantil, em que a sociedade se acostuma a ver crianças trabalhando em semáforos ou feiras públicas, desresponsabilizando o Estado e normalizando a barbárie por omissão coletiva.",
+                p1: "Ministério do Trabalho e Emprego (Agente) deve intensificar fiscalizações contínuas sobre lavouras, polos informais e áreas urbanas de alta vulnerabilidade (Ação), por meio de parcerias com o Ministério do Desenvolvimento e Assistência Social para cruzamento de dados de inteligência fiscal (Meio), a fim de identificar núcleos exploradores e extinguir focos de exploração laboral infanto-juvenil (Efeito), detalhando o processo com a aplicação de multas rescisórias exemplares e denúncias penais ao Ministério Público.",
+                p2: "Ministério do Desenvolvimento e Assistência Social (Agente) deve expandir a blindagem econômica familiar (Ação), por intermédio do fortalecimento de programas de transferência condicionada de renda associada à permanência escolar ativa dos menores (Meio), visando mitigar a necessidade familiar de complementação de renda infantil (Efeito), com detalhamento do suporte psicopedagógico compulsório nos Centros de Referência de Assistência Social (CRAS)."
+            },
+            politicos: {
+                titulo: "Problemas Políticos",
+                badge: "Cidadania & Estado",
+                definicao: "Processo de corrosão institucional, crise de representatividade democrática e apatia civil no cenário nacional, o que resulta na ineficácia de converter as prescrições constitucionais em políticas públicas efetivas.",
+                autor: "Gilberto Dimenstein (Escritor & Jornalista)",
+                repertorio: "Em 'O Cidadão de Papel', Dimenstein expõe a existência de leis extremamente modernas na legislação brasileira que, na prática cotidiana, permanecem restritas à teoria escrita, configurando direitos de fachada que geram inércia social e desamparo estatal crônico.",
+                p1: "Controladoria-Geral da União (Agente) deve estruturar um monitoramento contínuo de destinação orçamentária para obras municipais (Ação), mediante a criação de um 'Painel Integrado da Transparência Ativa' com algoritmos que identificam superfaturamento ou morosidade nas execuções (Meio), com o objetivo de otimizar a integridade pública e prevenir desvios de recursos estratégicos sociais (Efeito), detalhando a garantia de um canal digital simplificado de denúncias públicas sob controle cidadão descentralizado.",
+                p2: "Ministério da Educação (Agente) deve incitar o engajamento cívico estudantil contínuo (Ação), via fomento à formação prática de debates governamentais e incentivo de grêmios estudantis autônomos por todo o ciclo secundarista nacional (Meio), visando formar cidadãos cientes dos mecanismos de representação e erradicar o panorama contemporâneo de apatia civil frente aos três poderes (Efeito), detalhando essa inserção com cartilhas ilustradas desenvolvidas pela Defensoria Pública da União."
+            },
+            // NOVOS: Temas de Fusão/Cruzamento
+            fusao_desigualdade_trabalho: {
+                titulo: "Desigualdade & Trabalho Infantil",
+                badge: "Fusão Socioeconômica",
+                definicao: "Ciclo de vulnerabilidade estrutural em que a extrema disparidade financeira das famílias atua como o vetor direto que empurra crianças ao mercado laboral informal, destruindo sua formação estudantil e perpetuando a pobreza intergeracional.",
+                autor: "Zygmunt Bauman (Sociólogo Polonês)",
+                repertorio: "Em 'Vidas Desperdiçadas', Bauman analisa as populações marginalizadas pela modernidade líquida. Essa teoria se aplica ao cruzamento de eixos, uma vez que as crianças exploradas pelo labor precoce tornam-se subprodutos da desigualdade, invisibilizadas pelas engrenagens econômicas.",
+                p1: "Ministério do Desenvolvimento e Assistência Social (Agente) deve ampliar o benefício financeiro de transferência de renda (Ação), por meio de cotas adicionais condicionadas à matrícula e frequência escolar integral dos menores de idade (Meio), para erradicar a necessidade de as famílias usarem o trabalho infantil como subsistência (Efeito), detalhando o monitoramento via conselhos tutelares municipais.",
+                p2: "Secretarias Estaduais de Educação (Agente) devem criar bolsas de incentivo de permanência escolar (Ação), mediante repasse orçamentário direto a jovens periféricos vulneráveis (Meio), com a finalidade de evitar a evasão escolar para o mercado informal (Efeito), detalhando com parcerias com o comércio local para garantir que a transição de menor aprendiz ocorra de forma segura e apenas na idade legal."
+            },
+            fusao_desigualdade_politicos: {
+                titulo: "Desigualdade & Problemas Políticos",
+                badge: "Fusão Estado & Sociedade",
+                definicao: "A inércia governamental e a má distribuição de poder no Brasil agem como fatores perpetuadores da exclusão social. A desigualdade de representação gera políticas públicas falhas que desamparam as minorias.",
+                autor: "Pierre Bourdieu (Sociólogo Francês)",
+                repertorio: "A teoria do 'Poder Simbólico' de Bourdieu demonstra como as elites políticas utilizam as instituições para legitimar a desigualdade de classes e reproduzir privilégios. Isso explica por que direitos previstos na Carta Magna permanecem como meras conquistas no papel.",
+                p1: "Congresso Nacional (Agente) deve aprovar emendas orçamentárias obrigatórias com foco exclusivo em saneamento e habitação (Ação), via aprovação de teto de gastos sociais mínimos indexados ao PIB (Meio), com a finalidade de forçar os governos municipais a investirem em áreas esquecidas e reduzir a assimetria periférica (Efeito), detalhando o controle por auditoria popular transparente.",
+                p2: "Tribunal Superior Eleitoral (Agente) deve incentivar a participação de minorias periféricas na representação partidária (Ação), por meio de canais de mentoria cidadã e financiamento proporcional a candidaturas de baixa renda (Meio), a fim de descentralizar o poder político e reverter a segregação (Efeito), com detalhamento de cartilhas educativas distribuídas em grêmios escolares."
+            },
+            fusao_trabalho_politicos: {
+                titulo: "Trabalho Infantil & Problemas Políticos",
+                badge: "Fusão Institucional & Direitos",
+                definicao: "O panorama no qual a falta de engajamento político das lideranças estatais e a corrupção de verbas sociais sabotam a fiscalização e a aplicação de leis de proteção infantil, condenando milhares de jovens à informalidade ilegal.",
+                autor: "Thomas Hobbes (Filósofo Inglês)",
+                repertorio: "Ao analisar o 'Contrato Social', Hobbes aponta que o Estado deve proteger a vida e garantir o bem-estar civil. Quando falha em extinguir a exploração de suas crianças, o poder soberano falha em seu dever primordial, quebrando o contrato e instaurando a barbárie por omissão institucional.",
+                p1: "Ministério Público do Trabalho (Agente) deve instituir forças-tarefa integradas à Polícia Federal (Ação), por intermédio de canais digitais de denúncia anônima georreferenciada em tempo real (Meio), visando desmantelar redes de exploração de menores que contam com a complacência de agentes públicos locais (Efeito), detalhando com punição administrativa imediata dos proprietários exploradores.",
+                p2: "Câmaras de Vereadores municipais (Agente) devem criar frentes de fiscalização obrigatória da aplicação do Estatuto da Criança e do Adolescente - ECA (Ação), via auditorias bimestrais nos conselhos tutelares de cada microrregião (Meio), visando garantir que as verbas municipais sejam aplicadas integralmente na proteção de menores vulneráveis (Efeito), com detalhamento do afastamento político de prefeitos que negligenciarem essas metas."
+            },
+            fusao_completa: {
+                titulo: "Tríade: Desigualdade, Trabalho & Política",
+                badge: "Visão Sistêmica Nota 1000",
+                definicao: "A perfeita simbiose dos problemas sociais do país: a desigualdade social gera a necessidade do labor precoce, enquanto a omissão do aparato político nacional e a crise ética estatal impedem a erradicação prática de ambas as mazelas.",
+                autor: "Karl Marx (Filósofo Alemão)",
+                repertorio: "A teoria da 'Infraestrutura e Superestrutura' demonstra como a base econômica desigual (infraestrutura) determina as instituições políticas e jurídicas (superestrutura). Isso ilustra por que o Estado historicamente legisla a favor de interesses patrimoniais, ignorando a barbárie do labor infanto-juvenil.",
+                p1: "Poder Executivo Federal (Agente) deve unificar a rede de atendimento social, educacional e fiscalizador das crianças em risco (Ação), por meio da criação do 'Plano Nacional Integrado de Resgate à Infância' (Meio), com o objetivo de retirar os menores das ruas, inseri-los no ensino profissionalizante integral e apoiar financeiramente suas famílias (Efeito), detalhando com repasse do Tesouro Nacional diretamente via Banco do Brasil.",
+                p2: "Ministério da Educação (Agente) em cooperação com as Secretarias de Assistência Social deve implementar escolas de tempo integral profissionais em todas as capitais do país (Ação), via financiamento com multas provenientes de corrupção ou crimes fiscais corporativos (Meio), visando reverter a exclusão socioeconômica de jovens periféricos (Efeito), detalhando a alimentação escolar diária gratuita e completa."
+            }
+        };
+
+        // Offline templates for normal and merged themes
+        const templatesLocais = {
+            desigualdade: {
+                introducao: "Em sua consagrada obra 'A Ralé Brasileira', o sociólogo Jessé Souza expõe que a desigualdade social no Brasil é estruturada de modo a naturalizar a subcidadania e perpetuar grupos vulneráveis à margem dos direitos fundamentais. Paralelamente a essa análise, observa-se que tal conjuntura se reflete de forma cruel na contemporaneidade do país, obstaculizando a ascensão econômica da população. Desse modo, torna-se imperioso analisar as bases desse cenário de exclusão, impulsionado tanto pela ineficácia de distribuição de renda quanto pela carência de igualdade educacional nas periferias brasileiras.",
+                desenvolvimento1: "Convém ressaltar, de início, que a disparidade econômica age como um entrave ao desenvolvimento social pleno. Sob a ótica de Jessé Souza, a estrutura histórica nacional perpetua uma subcidadania que marginaliza frações significativas do corpo social. Essa dinâmica impede o acesso legítimo a infraestruturas fundamentais, a exemplo de educação técnica e saneamento. Logo, enquanto as políticas de redistribuição patrimonial forem insuficientes, a barreira invisível da desigualdade continuará restringindo a dignidade constitucional de milhares de brasileiros.",
+                desenvolvimento2: "Ademais, a insuficiência de investimentos em educação pública de qualidade nas periferias aprofunda o abismo social contemporâneo. Sem acesso a uma formação acadêmica e técnica competitiva, os jovens das classes populares são privados de oportunidades reais de mobilidade socioeconômica. Consequentemente, o cenário de vulnerabilidade se reproduz de geração em geração. Torna-se imperioso, portanto, que as políticas estatais atuem diretamente na democratização do ensino para quebrar esse ciclo vicioso.",
+                conclusao: "Portanto, cabe ao Ministério da Fazenda combater a disparidade de oportunidades no país. Essa instituição deve realizar uma ampla e progressiva reforma tributária, por intermédio da tributação direta de grandes lucros e heranças combinada à desoneração do imposto sobre produtos de consumo das classes vulneráveis. Essa medida terá como finalidade atenuar a forte concentração patrimonial e destinar receitas ao Fundo de Combate à Pobreza municipal, garantindo um suporte estrutural robusto. Assim, romper-se-á com o ciclo de subcidadania criticado por Jessé Souza."
+            },
+            trabalho: {
+                introducao: "A renomada filósofa alemã Hannah Arendt, ao formular o conceito de 'A Banalidade do Mal', adverte que a aceitação passiva de injustiças pelo tecido social tende a normalizar a barbárie. Sob esse prisma, nota-se como a exploração infantil na sociedade brasileira contemporânea é tratada com profunda apatia civil, perpetuando a violação de direitos fundamentais sob o pretexto da necessidade laboral precoce. Assim, impõe-se a urgência de debater essa formação, estruturada sob a insuficiência fiscalizatória do Estado e a vulnerabilidade socioeconômica das famílias.",
+                desenvolvimento1: "É indubitável que a negligência das instâncias protetivas consolida a permanência de menores em atividades laborais degradantes. Conforme a teoria arendtiana, a omissão das instituições públicas e a indiferença coletiva banalizam abusos cotidianos, como o trabalho infantil em semáforos e lavouras. Essa inércia do poder fiscalizador compromete o desenvolvimento pleno, roubando o gozo da infância e consolidando a evasão escolar estrutural. Por conseguinte, urge reverter essa conivência sistemática para resgatar a dignidade dos jovens.",
+                desenvolvimento2: "Além disso, a falta de amparo financeiro direto às famílias de baixa renda impõe a necessidade de complementação orçamentária por parte dos filhos. Sem uma rede de proteção social eficiente e abrangente, o sustento básico sobrepõe-se à escolaridade. Essa triste realidade força a evasão acadêmica precoce, comprometendo o futuro profissional de milhares de crianças. Urge, desse modo, restabelecer a prioridade absoluta da infância preconizada em lei.",
+                conclusao: "Impende, pois, que o Ministério do Trabalho e Emprego atue de forma incisiva. Para tanto, esse órgão deve intensificar as fiscalizações em polos de vulnerabilidade socioeconômica, mediante parcerias com o Ministério do Desenvolvimento Social para o cruzamento inteligente de dados fiscais e sociais. Essa ação objetiva identificar focos de exploração laboral infantojuvenil e aplicar multas exemplares aos infratores, encaminhando as famílias para os Centros de Referência de Assistência Social (CRAS). Dessa forma, a banalização apontada por Arendt será atenuada."
+            },
+            politicos: {
+                introducao: "No livro 'O Cidadão de Papel', o jornalista Gilberto Dimenstein retrata a existência de uma legislação brasileira avançada que, paradoxalmente, falha em sua aplicação concreta, gerando cidadãos destituídos de direitos práticos. Esse cenário de ineficácia reflete diretamente os problemas políticos que afetam o Brasil contemporâneo, caracterizados pela apatia civil e pela corrosão institucional. Com efeito, torna-se essencial analisar as engrenagens que perpetuam esse panorama, com destaque para o distanciamento representativo e o desvio de recursos públicos prioritários.",
+                desenvolvimento1: "Nesse contexto, a ineficiência do aparato estatal constitui um forte obstáculo à consolidação dos preceitos democráticos. De acordo com Dimenstein, quando os canais institucionais falham em garantir direitos reais, a constituição assume um caráter puramente fictício. Essa discrepância entre a teoria legislativa e a realidade das periferias estimula o descrédito social nos poderes da república. Desse modo, o combate ao desvio de verbas e o fortalecimento de mecanismos de transparência ativa são urgentes para restabelecer o pacto civil.",
+                desenvolvimento2: "Outrossim, a falta de transparência ativa na destinação de verbas públicas estimula práticas clientelistas e desvios de recursos estratégicos. Sem um controle social simplificado, o cidadão comum permanece distante das tomadas de decisão e incapaz de cobrar fiscalização efetiva. Essa apatia civil retroalimenta o descaso estatal frente às demandas urgentes da sociedade brasileira. Romper essa barreira de desinformação é crucial para restaurar a integridade pública.",
+                conclusao: "Desse modo, a Controladoria-Geral da União deve agir para combater a ineficiência governamental. Esse órgão de controle deve estruturar uma auditoria pública contínua de destinação orçamentária municipal, por meio do desenvolvimento de um 'Painel Integrado da Transparência Ativa' acessível via dispositivos móveis. Esse projeto visa fiscalizar desvios e assegurar a execução de obras prioritárias em saúde e educação, permitindo denúncias civis descentralizadas e seguras. Assim, as garantias do país deixarão de ser apenas papel."
+            },
+            // Templates de Fusão
+            fusao_desigualdade_trabalho: {
+                introducao: "O consagrado sociólogo Zygmunt Bauman, em sua teoria das 'Vidas Desperdiçadas', retrata como as engrenagens da modernidade geram populações marginalizadas, invisíveis para o centro econômico estatal. No Brasil, essa análise se manifesta de forma dramática no cruzamento entre a desigualdade social e o trabalho infantil, problemas indissociáveis em que a miséria de base atua como o vetor que arrasta crianças para as atividades laborais informais precoces. Urge analisar as engrenagens de reprodução desse ciclo e o consequente desamparo que rouba o futuro acadêmico nacional.",
+                desenvolvimento1: "Cabe pontuar, em primeiro plano, como a disparidade econômica severa impõe uma dinâmica de subsistência familiar em detrimento da educação. Quando o sustento básico de um lar está ameaçado, a mão de obra infanto-juvenil passa a ser vista não como abuso, mas como fonte essencial de complemento orçamentário. Sob a ótica de Bauman, essa marginalização condena o menor a um 'descarte' social, privando-o do desenvolvimento pleno e bloqueando qualquer chance real de mobilidade social futura.",
+                desenvolvimento2: "Além do mais, a evasão escolar decorrente do trabalho precoce atua como um catalisador para a própria manutenção da miséria. Privado da instrução regular competitiva, o jovem explorado terá como única perspectiva no mercado de trabalho empregos precários e informais na vida adulta. Trata-se de um ciclo vicioso contínuo que cristaliza o panorama de exclusão social no Brasil, de modo que a desigualdade passa a ser perpetuada de geração para geração.",
+                conclusao: "Impende, pois, que o Ministério do Desenvolvimento e Assistência Social implemente um programa de amparo robusto para romper essa barreira econômica. Essa pasta deve expandir as parcelas condicionadas de transferência direta de renda a lares vulneráveis periféricos, garantindo cotas adicionais apenas para famílias que mantiverem seus menores devidamente matriculados e com presença em período escolar integral. Esse acompanhamento constante deve contar com o apoio dos conselhos tutelares locais, visando de uma vez por todas livrar os jovens da exploração e assegurar-lhes o devido acesso à educação de qualidade."
+            },
+            fusao_desigualdade_politicos: {
+                introducao: "A teoria do 'Poder Simbólico' de Pierre Bourdieu elucida como o capital cultural e as instituições estatais são utilizados pelas classes dominantes para justificar, legitimar e reproduzir desigualdades e exclusões históricas. Nesse viés, a forte disparidade social no Brasil cruza-se de forma íntima com os problemas políticos do país, uma vez que a falta de representação direta das comunidades mais pobres no parlamento resulta em leis que desamparam as minorias e mantêm a inércia burocrática estatal frente às carências básicas das favelas brasileiras.",
+                desenvolvimento1: "A priori, convém enfatizar que a segregação civil é reforçada quando as instituições operam distantes da realidade da população. Sob o escopo de Bourdieu, a estrutura política tradicional exerce uma violência que impede a mobilidade e o acesso ao poder legítimo de decisão. Sem lideranças periféricas e representativas capazes de redirecionar verbas públicas prioritárias, o saneamento, a moradia digna e a segurança permanecem restritos aos bairros nobres, legitimando a desigualdade.",
+                desenvolvimento2: "De outra parte, a carência de transparência ativa e canais diretos de fiscalização popular estimula desvios corruptos de recursos estratégicos periféricos. A população de baixa renda, além de sofrer com a falta de amparo, é privada de cobrar efetivamente as promessas eleitorais. Esse vácuo democrático faz com que as garantias constitucionais não passem de 'direitos de papel' fictícios, ampliando o abismo social do país.",
+                conclusao: "Desse modo, o Congresso Nacional deve instituir leis que corrijam essa assimetria orçamentária e forcem a integridade. O parlamento deve aprovar emendas impositivas obrigatórias com destinação indexada ao PIB exclusivamente para a infraestrutura social periférica, por meio de orçamentos participativos regionais em que os moradores decidam as prioridades das obras. Essa ação terá como meta empoderar a população periférica e garantir investimentos práticos e blindados contra a inércia, assegurando direitos de fato aos desfavorecidos."
+            },
+            fusao_trabalho_politicos: {
+                introducao: "Segundo a concepção do 'Contrato Social' proposta pelo filósofo inglês Thomas Hobbes, o Estado possui o dever irrevogável de agir como protetor da estabilidade, da segurança e da integridade de todos os cidadãos, sob o risco de restaurar um estado de barbárie coletiva. No entanto, no cenário brasileiro, o cruzamento do trabalho infantil com os sérios desarranjos políticos revela uma inegável violação desse contrato, em que a ineficiência administrativa e o descaso governamental impedem a efetivação das leis protetivas destinadas à proteção prioritária da infância.",
+                desenvolvimento1: "Torna-se evidente, sob essa ótica, que o amparo incompleto de menores é decorrência direta de um sistema político leniente com as infrações sociais cotidianas. Hobbes postula que a inação governamental rompe com as expectativas de proteção mútua contratual. Assim, as vistas grossas dadas pela ineficiência pública frente ao labor precoce em semáforos e áreas rurais traduzem a perda de legitimidade estatal e a falha em resguardar a infância.",
+                desenvolvimento2: "Adicionalmente, a falta de verbas orçamentárias robustas para conselhos tutelares e órgãos fiscais do Ministério do Trabalho enfraquece a rede pública de repressão à exploração infantojuvenil. Sem frotas, agentes concursados ou tecnologia de monitoramento de lavouras e carvoarias, as leis avançadas, a exemplo do ECA, permanecem estéreis. Essa omissão política continuada expõe as futuras gerações periféricas aos piores abusos do mercado informal.",
+                conclusao: "Torna-se imperioso, portanto, que o Ministério Público do Trabalho aja para reverter esse vácuo fiscalizador estatal. Esse órgão de controle deve realizar frentes de fiscalização conjunta à Polícia Federal, por intermédio da criação de um sistema integrado de rastreamento de denúncias públicas anônimas em tempo real, visando flagrar e interditar redes de exploração de menores que contam com a vista grossa ou cumplicidade de lideranças públicas municipais. Essa punição exemplar deve cassar registros comerciais dos infratores e assegurar o cumprimento do contrato hobbesiano."
+            },
+            fusao_completa: {
+                introducao: "Ao formular a tese de que a infraestrutura econômica determina a superestrutura jurídica e política, o filósofo Karl Marx descortina a forte correlação entre capital de base e organização governamental. Esse conceito marxista aplica-se perfeitamente à tríade de entraves que afeta o país, visto que a profunda desigualdade social age como motor do trabalho infantil, enquanto a ineficiência do poder político, corrompido por interesses dominantes, falha sistematicamente em prover educação em tempo integral e fiscalizar a barbárie no mercado informal.",
+                desenvolvimento1: "É fulcral notar que a opressão laboral das classes vulneráveis atua como um elemento para a reprodução dos desníveis de base do capitalismo. Sob o escopo marxista, enquanto as famílias dependerem da atividade laboral precoce de seus filhos para suprir as lacunas materiais imediatas, a emancipação educacional se tornará inalcançável. O Estado, no papel de superestrutura inerte, age como um mantenedor silencioso desse arranjo desigual.",
+                desenvolvimento2: "Do mesmo modo, a ausência de uma reforma educacional integral profunda e descentralizada impede que a escola represente um ponto de ruptura dessa opressão material periférica. As políticas educacionais frágeis mantêm a desigualdade, enquanto a carência de assistência contínua do sistema governamental empurra, repetidamente, os jovens periféricos para o comércio informal urbano, estagnando o IDH e anulando direitos constitucionais fundamentais.",
+                conclusao: "Urge, por conseguinte, que o Poder Executivo Federal unifique a rede de amparo por meio de um amplo Plano de Salvação à Infância. Essa coordenação deve financiar a ampliação da rede de escolas profissionais em tempo integral nas regiões desprovidas, por intermédio de receitas originadas do confisco de bens decorrentes de corrupção estatal e sonegação corporativa. Esse repasse direto financiará materiais de ponta, alimentação e bolsas familiares de retenção escolar, quebrando de vez o determinismo de Marx e resgatando a dignidade infantojuvenil do país."
+            }
+        };
+
+        // Current UI State
+        let selectedThemeId = 'desigualdade';
+        const c5State = {
+            agente: false,
+            acao: false,
+            meio: false,
+            efeito: false,
+            detalhamento: false
+        };
+
+        // Select Theme Handler (Suporta temas isolados e as fusões de temas)
+        function selectTheme(themeId) {
+            selectedThemeId = themeId;
+            const data = temasDb[themeId];
+
+            // Render Nodes Styles (Para botões comuns e de fusão)
+            document.querySelectorAll('.mindmap-node').forEach(node => {
+                node.classList.remove('border-emerald-500', 'bg-emerald-500/5', 'dark:bg-emerald-950/20', 'border-indigo-500', 'bg-indigo-500/5');
+                node.classList.add('border-slate-200', 'dark:border-slate-800', 'bg-slate-50', 'dark:bg-slate-800/40');
+            });
+            const activeNode = document.getElementById(`node-${themeId}`);
+            if (activeNode) {
+                activeNode.classList.remove('border-slate-200', 'dark:border-slate-800', 'bg-slate-50', 'dark:bg-slate-800/40');
+                if (themeId.startsWith('fusao')) {
+                    activeNode.classList.add('border-indigo-500', 'bg-indigo-500/5');
+                } else {
+                    activeNode.classList.add('border-emerald-500', 'bg-emerald-500/5', 'dark:bg-emerald-950/20');
+                }
+            }
+
+            // Render Right Detail Card
+            document.getElementById('detalhe-titulo').innerText = data.titulo;
+            document.getElementById('detalhe-definicao').innerText = data.definicao;
+            document.getElementById('detalhe-autor').innerText = data.autor;
+            document.getElementById('detalhe-repertorio').innerText = data.repertorio;
+            document.getElementById('detalhe-p1').innerText = data.p1;
+            document.getElementById('detalhe-p2').innerText = data.p2;
+
+            const badge = document.getElementById('badge-tema');
+            badge.innerText = data.badge;
+
+            // Reset AI Output on Theme change
+            document.getElementById('ai-result-box').classList.add('hidden');
+        }
+
+        // Toggle C5 Checklist
+        function toggleElement(elementKey) {
+            c5State[elementKey] = !c5State[elementKey];
+            const btn = document.getElementById(`chk-${elementKey}`);
+            const icon = btn.querySelector('svg, i');
+            
+            if (c5State[elementKey]) {
+                btn.classList.add('border-emerald-500', 'bg-emerald-500/10', 'dark:bg-emerald-950/20');
+                btn.classList.remove('border-slate-200', 'dark:border-slate-800');
+                if (icon) {
+                    icon.classList.remove('text-slate-400');
+                    icon.classList.add('text-emerald-500');
+                }
+            } else {
+                btn.classList.remove('border-emerald-500', 'bg-emerald-500/10', 'dark:bg-emerald-950/20');
+                btn.classList.add('border-slate-200', 'dark:border-slate-800');
+                if (icon) {
+                    icon.classList.remove('text-emerald-500');
+                    icon.classList.add('text-slate-400');
+                }
+            }
+
+            calculateC5Score();
+        }
+
+        // Calculate C5 Score (40 points per element)
+        function calculateC5Score() {
+            let elementsFound = 0;
+            Object.values(c5State).forEach(val => {
+                if (val) elementsFound++;
+            });
+            const score = elementsFound * 40;
+            
+            const scoreBadge = document.getElementById('c5-score');
+            scoreBadge.innerText = `${score} / 200 Pontos`;
+            
+            if (score === 200) {
+                scoreBadge.className = "px-3 py-1 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-extrabold text-sm rounded-full animate-bounce";
+            } else {
+                scoreBadge.className = "px-3 py-1 bg-amber-500/15 text-amber-600 dark:text-amber-400 font-extrabold text-sm rounded-full";
+            }
+        }
+
+        // Copy Clipboard Helper
+        function copyToClipboard(targetId) {
+            let text = "";
+            if (targetId === 'repertorio') {
+                const autor = document.getElementById('detalhe-autor').innerText;
+                const repertorio = document.getElementById('detalhe-repertorio').innerText;
+                text = `${autor}: ${repertorio}`;
+            } else if (targetId === 'ai-result') {
+                text = document.getElementById('ai-result').innerText;
+            } else if (targetId === 'full-essay') {
+                const intro = document.getElementById('slot-introducao').value;
+                const d1 = document.getElementById('slot-desenvolvimento1').value;
+                const d2 = document.getElementById('slot-desenvolvimento2').value;
+                const conclusion = document.getElementById('slot-conclusao').value;
+                text = `${intro}\n\n${d1}\n\n${d2}\n\n${conclusion}`.trim();
+            }
+
+            if (!text) {
+                showToast("Não há texto para copiar!");
+                return;
+            }
+
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast("Copiado com sucesso!");
+        }
+
+        // Show Custom Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const text = document.getElementById('toast-text');
+            text.innerText = message;
+            toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Helper dynamically calculates line usage for single paragraph
+        function updateLineCounter(text) {
+            const charLimitPerLine = 75;
+            const estimatedLines = Math.max(1, Math.ceil(text.length / charLimitPerLine));
+            
+            const lineCounter = document.getElementById('line-counter');
+            const progressBar = document.getElementById('line-progress-bar');
+            const feedback = document.getElementById('line-feedback');
+
+            lineCounter.innerText = `${estimatedLines} linhas estimadas`;
+            
+            const percent = Math.min(100, (estimatedLines / 15) * 100);
+            progressBar.style.width = `${percent}%`;
+
+            if (estimatedLines <= 7) {
+                progressBar.className = "bg-emerald-500 h-1.5 rounded-full transition-all duration-500";
+                feedback.innerText = "Excelente! Este parágrafo está super enxuto e equilibrado.";
+            } else if (estimatedLines <= 10) {
+                progressBar.className = "bg-amber-500 h-1.5 rounded-full transition-all duration-500";
+                feedback.innerText = "Bom tamanho. Ideal para desenvolvimento ou conclusão detalhada.";
+            } else {
+                progressBar.className = "bg-rose-500 h-1.5 rounded-full transition-all duration-500";
+                feedback.innerText = "Atenção: Parágrafo muito longo! Pode comprometer o limite de 30 linhas da redação completa.";
+            }
+        }
+
+        // Add generated paragraph to corresponding slot
+        function addToDraft() {
+            const typeSelected = document.getElementById('ai-paragraph-type').value;
+            const textGenerated = document.getElementById('ai-result').innerText;
+            
+            const slot = document.getElementById(`slot-${typeSelected}`);
+            if (slot) {
+                slot.value = textGenerated;
+                compileFullEssay();
+                showToast("Adicionado ao rascunho com sucesso!");
+                
+                // Rola suavemente até a folha de redação para que o aluno veja a atualização
+                document.getElementById(`slot-${typeSelected}`).scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Clear All slots in Full Essay
+        function clearFullEssay() {
+            document.getElementById('slot-introducao').value = "";
+            document.getElementById('slot-desenvolvimento1').value = "";
+            document.getElementById('slot-desenvolvimento2').value = "";
+            document.getElementById('slot-conclusao').value = "";
+            compileFullEssay();
+            showToast("Rascunho limpo!");
+        }
+
+        // Insert a connective manually in any slot
+        function insertConnector(slotId, connectorText) {
+            const textarea = document.getElementById(slotId);
+            const startPos = textarea.selectionStart;
+            const endPos = textarea.selectionEnd;
+            const currentVal = textarea.value;
+
+            // Insere no início ou na posição do cursor
+            textarea.value = currentVal.substring(0, startPos) + connectorText + currentVal.substring(endPos, currentVal.length);
+            textarea.focus();
+            
+            // Coloca o cursor após o conectivo inserido
+            textarea.selectionStart = textarea.selectionEnd = startPos + connectorText.length;
+            compileFullEssay();
+        }
+
+        // Compiles and dynamic updates full essay sheet representation
+        function compileFullEssay() {
+            const intro = document.getElementById('slot-introducao').value;
+            const d1 = document.getElementById('slot-desenvolvimento1').value;
+            const d2 = document.getElementById('slot-desenvolvimento2').value;
+            const conclusion = document.getElementById('slot-conclusao').value;
+
+            const charLimitPerLine = 75; // Média oficial escrita à mão do ENEM
+
+            // Calcula linhas por parágrafo
+            const linesIntro = intro ? Math.ceil(intro.length / charLimitPerLine) : 0;
+            const linesD1 = d1 ? Math.ceil(d1.length / charLimitPerLine) : 0;
+            const linesD2 = d2 ? Math.ceil(d2.length / charLimitPerLine) : 0;
+            const linesConclusion = conclusion ? Math.ceil(conclusion.length / charLimitPerLine) : 0;
+
+            document.getElementById('lines-intro').innerText = `${linesIntro} linhas`;
+            document.getElementById('lines-desenvolvimento1').innerText = `${linesD1} linhas`;
+            document.getElementById('lines-desenvolvimento2').innerText = `${linesD2} linhas`;
+            document.getElementById('lines-conclusao').innerText = `${linesConclusion} linhas`;
+
+            const totalLines = linesIntro + linesD1 + linesD2 + linesConclusion;
+
+            // Atualiza o medidor acumulado global
+            const lineCounter = document.getElementById('full-essay-line-counter');
+            const progressBar = document.getElementById('full-essay-progress-bar');
+
+            lineCounter.innerText = `${totalLines} / 30 linhas`;
+            const percent = Math.min(100, (totalLines / 30) * 100);
+            progressBar.style.width = `${percent}%`;
+
+            if (totalLines <= 20) {
+                progressBar.className = "bg-sky-500 h-2 rounded-full transition-all duration-300";
+                lineCounter.className = "font-black text-sky-500";
+            } else if (totalLines <= 30) {
+                progressBar.className = "bg-emerald-500 h-2 rounded-full transition-all duration-300";
+                lineCounter.className = "font-black text-emerald-500";
+            } else {
+                progressBar.className = "bg-rose-500 h-2 rounded-full transition-all duration-300 animate-bounce";
+                lineCounter.className = "font-black text-rose-500 animate-pulse";
+            }
+
+            // Renderiza as linhas numeradas graficamente
+            renderSheetLines(intro, d1, d2, conclusion, charLimitPerLine);
+        }
+
+        // Graphic Sheet Lines Renderer helper
+        function renderSheetLines(intro, d1, d2, conclusion, charLimit) {
+            const grid = document.getElementById('lines-grid');
+            grid.innerHTML = "";
+
+            const paragraphs = [
+                { text: intro, color: "border-emerald-500/30 text-emerald-800 dark:text-emerald-300", placeholder: "Introdução ainda não adicionada..." },
+                { text: d1, color: "border-indigo-500/30 text-indigo-800 dark:text-indigo-300", placeholder: "Desenvolvimento 1 ainda não adicionado..." },
+                { text: d2, color: "border-violet-500/30 text-violet-800 dark:text-violet-300", placeholder: "Desenvolvimento 2 ainda não adicionado..." },
+                { text: conclusion, color: "border-amber-500/30 text-amber-800 dark:text-amber-300", placeholder: "Conclusão ainda não adicionada..." }
+            ];
+
+            let globalLineCount = 1;
+
+            paragraphs.forEach((p, pIdx) => {
+                if (!p.text) {
+                    // Adiciona uma única linha apagada de placeholder se o parágrafo estiver vazio
+                    const lineDiv = document.createElement('div');
+                    lineDiv.className = "flex items-center gap-4 border-b border-dashed border-slate-200 dark:border-slate-800 h-[22px]";
+                    
+                    const numSpan = document.createElement('span');
+                    numSpan.className = "w-8 text-right font-mono text-[10px] text-slate-300 select-none border-r border-rose-200 dark:border-rose-950 pr-2";
+                    numSpan.innerText = globalLineCount < 10 ? `0${globalLineCount}` : globalLineCount;
+
+                    const textSpan = document.createElement('span');
+                    textSpan.className = "text-[10px] text-slate-300 dark:text-slate-600 italic select-none pl-2";
+                    textSpan.innerText = p.placeholder;
+
+                    lineDiv.appendChild(numSpan);
+                    lineDiv.appendChild(textSpan);
+                    grid.appendChild(lineDiv);
+                    globalLineCount++;
+                    return;
+                }
+
+                // Quebra o texto de forma simulada pela média de tamanho de caracteres por linha manuscrita
+                const words = p.text.split(" ");
+                let currentLineText = "";
+                let pLines = [];
+
+                words.forEach(word => {
+                    if ((currentLineText + word).length > charLimit) {
+                        pLines.push(currentLineText.trim());
+                        currentLineText = word + " ";
+                    } else {
+                        currentLineText += word + " ";
+                    }
+                });
+                if (currentLineText) {
+                    pLines.push(currentLineText.trim());
+                }
+
+                pLines.forEach((lineText, lIdx) => {
+                    const lineDiv = document.createElement('div');
+                    // Cria uma margem visual entre parágrafos
+                    const spacingClass = (lIdx === 0 && pIdx > 0) ? "mt-2" : "";
+                    lineDiv.className = `flex items-center gap-4 border-b border-slate-200 dark:border-slate-800/80 h-[22px] ${spacingClass} group hover:bg-slate-100/50 dark:hover:bg-slate-800/20`;
+
+                    const numSpan = document.createElement('span');
+                    // Destaca em vermelho se estourar as 30 linhas oficiais
+                    const numberColor = globalLineCount > 30 ? "text-rose-500 font-extrabold" : "text-slate-400";
+                    numSpan.className = `w-8 text-right font-mono text-[10px] select-none border-r border-rose-200 dark:border-rose-950 pr-2 ${numberColor}`;
+                    numSpan.innerText = globalLineCount < 10 ? `0${globalLineCount}` : globalLineCount;
+
+                    const textSpan = document.createElement('span');
+                    textSpan.className = `text-[11px] font-medium tracking-wide pl-2 truncate flex-1 ${p.color}`;
+                    textSpan.innerText = lineText;
+
+                    lineDiv.appendChild(numSpan);
+                    lineDiv.appendChild(textSpan);
+                    grid.appendChild(lineDiv);
+                    globalLineCount++;
+                });
+            });
+
+            // Completa as linhas em branco até o número 30 para manter o aspecto de folha de redação oficial
+            while (globalLineCount <= 30) {
+                const lineDiv = document.createElement('div');
+                lineDiv.className = "flex items-center gap-4 border-b border-slate-100 dark:border-slate-800/50 h-[22px]";
+                
+                const numSpan = document.createElement('span');
+                numSpan.className = "w-8 text-right font-mono text-[10px] text-slate-300 select-none border-r border-rose-200 dark:border-rose-950 pr-2";
+                numSpan.innerText = globalLineCount < 10 ? `0${globalLineCount}` : globalLineCount;
+
+                const textSpan = document.createElement('span');
+                textSpan.className = "text-[11px] text-transparent select-none pl-2";
+                textSpan.innerText = "-";
+
+                lineDiv.appendChild(numSpan);
+                lineDiv.appendChild(textSpan);
+                grid.appendChild(lineDiv);
+                globalLineCount++;
+            }
+        }
+
+        // Call Gemini API (with Backoff and fallback protection)
+        async function fetchGeminiAPI(promptText) {
+            const systemPrompt = `Você é um professor corretor especialista em redação do ENEM nota 1000. 
+            Sua missão é gerar um parágrafo perfeitamente estruturado, de alta qualidade acadêmica, focado no ENEM brasileiro.
+            Siga estritamente as regras de limite: o parágrafo gerado não deve passar de 7 linhas escritas, mantendo-se ultra enxuto.
+            Não utilize listas nem quebras de linha artificiais no meio do parágrafo.`;
+
+            const payload = {
+                contents: [{ parts: [{ text: promptText }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            let delay = 1000;
+            for (let i = 0; i < 3; i++) {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        return result.candidates?.[0]?.content?.parts?.[0]?.text || "";
+                    }
+                } catch (e) {
+                    // Fail silently
+                }
+                await new Promise(resolve => setTimeout(resolve, delay));
+                delay *= 2;
+            }
+            return "";
+        }
+
+        // Generate AI Paragraph Sketch
+        async function generateAIParticle() {
+            const btn = document.getElementById('ai-btn');
+            const resultBox = document.getElementById('ai-result-box');
+            const resultDiv = document.getElementById('ai-result');
+
+            const themeData = temasDb[selectedThemeId];
+            const typeSelected = document.getElementById('ai-paragraph-type').value;
+
+            btn.disabled = true;
+            btn.innerHTML = `<span class="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span> Organizando Estrutura...`;
+
+            let promptStr = "";
+            if (typeSelected === "introducao") {
+                promptStr = `Escreva um parágrafo modelo de INTRODUÇÃO para o tema de Redação: "${themeData.titulo}". Use o repertório sociocultural de autoridade de "${themeData.autor}" (${themeData.repertorio}). Trate de forma resumida para caber no limite oficial de linhas. Escreva sem quebras de linha internas.`;
+            } else if (typeSelected === "desenvolvimento1") {
+                promptStr = `Escreva um parágrafo modelo de DESENVOLVIMENTO 1 para o tema de Redação: "${themeData.titulo}". Use o repertório sociocultural "${themeData.autor}" (${themeData.repertorio}) para fundamentar a análise de primeira causa do problema. O parágrafo deve ser enxuto e ideal para caber na folha.`;
+            } else if (typeSelected === "desenvolvimento2") {
+                promptStr = `Escreva um parágrafo de DESENVOLVIMENTO 2 para o tema de Redação: "${themeData.titulo}". Aborde a segunda causa (educação ou ineficácia estatal), mantendo coesão excelente com o desenvolvimento 1. Trate de forma enxuta.`;
+            } else {
+                promptStr = `Escreva um parágrafo modelo de CONCLUSÃO (Proposta de Intervenção Completa) para o tema: "${themeData.titulo}". Use AGENTE (${themeData.p1.split(" (Agente)")[0]}), AÇÃO, MEIO/MODO, EFEITO e DETALHAMENTO. Seja direto e focado nas regras do ENEM de forma sucinta.`;
+            }
+
+            try {
+                let responseText = "";
+                
+                if (apiKey !== "") {
+                    responseText = await fetchGeminiAPI(promptStr);
+                }
+
+                // Fallback Inteligente e Instantâneo se a chave estiver vazia ou falhar
+                if (!responseText) {
+                    responseText = templatesLocais[selectedThemeId][typeSelected];
+                }
+
+                resultDiv.innerText = responseText;
+                updateLineCounter(responseText);
+                resultBox.classList.remove('hidden');
+            } catch (err) {
+                // Garantia absoluta de funcionamento
+                const localBackup = templatesLocais[selectedThemeId][typeSelected];
+                resultDiv.innerText = localBackup;
+                updateLineCounter(localBackup);
+                resultBox.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-slate-950 text-slate-950"></i> Gerar Esboço Estruturado`;
+                lucide.createIcons();
+            }
+        }
+
+        // Window Initializer
+        window.onload = function() {
+            // Setup Lucide Icons
+            lucide.createIcons();
+            // Start Active View
+            selectTheme('desigualdade');
+            // Inicializa a folha de redação limpa
+            compileFullEssay();
+        }
+    </script>
+</body>
+</html>
