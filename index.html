@@ -1,0 +1,351 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental - Filosofia Política e Ética</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-indigo-600/20 text-indigo-400 rounded-xl border border-indigo-500/30">
+                    <i data-lucide="git-fork" class="w-6 h-6 rotate-90"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        Mapa Mental de Filosofia
+                    </h1>
+                    <p class="text-xs text-slate-400">Filosofia Política, Ética, Circunstâncias e a Banalidade do Mal</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="expandirTodos()" class="px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-all flex items-center gap-1.5 border border-slate-700">
+                    <i data-lucide="chevrons-up-down" class="w-3.5 h-3.5"></i> Expandir Todos
+                </button>
+                <button onclick="recolherTodos()" class="px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-all flex items-center gap-1.5 border border-slate-700">
+                    <i data-lucide="minimize-2" class="w-3.5 h-3.5"></i> Recolher Todos
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-8">
+        
+        <!-- Apresentação do Tema Central -->
+        <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl border border-slate-800 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
+            
+            <div class="space-y-3 max-w-2xl text-center md:text-left">
+                <span class="px-3 py-1 text-xs font-semibold text-indigo-400 bg-indigo-500/10 rounded-full border border-indigo-500/20 uppercase tracking-wider">Tema Central</span>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">O Homem, a Sociedade e a Responsabilidade Moral</h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Uma análise conectiva extraída de suas anotações sobre como o indivíduo se constitui na sociedade, as tensões do Estado Político, as visões circunstanciais de Ortega y Gasset e o perigo do conformismo ético teorizado por Hannah Arendt.
+                </p>
+            </div>
+            <div class="flex flex-col items-center justify-center p-6 bg-slate-800/50 rounded-xl border border-slate-700/50 min-w-[200px] text-center">
+                <span class="text-4xl mb-2">💡</span>
+                <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Estrutura de Análise</span>
+                <span class="text-indigo-400 font-semibold text-sm mt-1">3 Eixos Interconectados</span>
+            </div>
+        </div>
+
+        <!-- Grid de Eixos do Mapa Mental -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- EIXO 1: SOCIEDADE DO ESTADO / POLÍTICA -->
+            <div class="flex flex-col bg-slate-900/50 rounded-2xl border border-slate-800 overflow-hidden shadow-lg transition-all hover:border-slate-700/80">
+                <div class="p-5 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-blue-500/20 text-blue-400 rounded-lg">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">Eixo 01</span>
+                            <h3 class="text-base font-bold text-white">Sociedade e Estado</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 flex-1 flex flex-col gap-4">
+                    <!-- Conceito 1 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n1-1')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                Transição de "Status" (Hobbes)
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n1-1" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n1-1" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p><strong class="text-slate-300">De Status Naturae:</strong> Estado original de liberdade absoluta, porém vulnerável a conflitos permanentes.</p>
+                            <p><strong class="text-slate-300">Para Status Politicus:</strong> Transição para a segurança jurídica e civil através do Pacto Social.</p>
+                            <div class="bg-blue-950/30 p-2 rounded-lg border border-blue-900/30 mt-2 text-blue-300 italic">
+                                "O homem abandona sua liberdade irrestrita para ganhar a salvaguarda de sua integridade física e social."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conceito 2 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n1-2')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                O Pacto/Contrato Social
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n1-2" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n1-2" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p>O fundamento da convivência harmônica. Os cidadãos cedem parte do arbítrio individual a um corpo comum em troca de regras previsíveis.</p>
+                            <p class="text-slate-300 font-semibold mt-2">Diferenciais do Pacto:</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li>Estabelecimento da ordem civilizada.</li>
+                                <li>Ordenação de relações complexas.</li>
+                                <li>Redução do perigo iminente de autodestruição.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Conceito 3 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n1-3')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                Século XIX & Crise Institucional
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n1-3" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n1-3" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p>Período marcado por profundas perturbações institucionais e morais.</p>
+                            <p><strong class="text-slate-300">Nova Ordem Econômica e Política:</strong> O surgimento de novas realidades exige reorganização massiva das instituições sociais existentes.</p>
+                            <p>Surgimento do conceito das multidões desordenadas que alteram as relações de poder tradicionais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EIXO 2: O PROBLEMA ÉTICO -->
+            <div class="flex flex-col bg-slate-900/50 rounded-2xl border border-slate-800 overflow-hidden shadow-lg transition-all hover:border-slate-750/80">
+                <div class="p-5 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-purple-500/20 text-purple-400 rounded-lg">
+                            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">Eixo 02</span>
+                            <h3 class="text-base font-bold text-white">O Problema Ético</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 flex-1 flex flex-col gap-4">
+                    <!-- Conceito 1 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n2-1')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                                O Agir e a Consciência Moral
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n2-1" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n2-1" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p>Diferenciação conceitual entre o simples agir impulsivo e o <strong class="text-slate-300">problema ético genuíno</strong> (que vai muito além de um "problema comum" cotidiano).</p>
+                            <p>O surgimento do "homem moral" ocorre quando a ação é orientada pela escolha consciente, responsabilidade e reflexão dos impactos sociais.</p>
+                        </div>
+                    </div>
+
+                    <!-- Conceito 2 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n2-2')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                                Ortega y Gasset: Circunstância
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n2-2" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n2-2" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p class="text-indigo-300 font-semibold italic text-sm">"Eu sou eu e minhas circunstâncias, e se não salvo a elas, não salvo a mim mesmo."</p>
+                            <p class="mt-2">O ser humano não pode ser concebido de forma isolada de seu contexto histórico, físico, social e imediato.</p>
+                            <p class="text-slate-300 font-semibold mt-2">Duas vertentes de Razão:</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li><strong class="text-slate-200">Razão Vital / Histórica:</strong> Centrada na existência humana prática e no contexto em movimento.</li>
+                                <li><strong class="text-slate-200">Razão Físico-Matemática:</strong> Útil para o mundo inanimado, mas insuficiente para explicar a vida vivida.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EIXO 3: AS MASSAS E O TOTALITARISMO -->
+            <div class="flex flex-col bg-slate-900/50 rounded-2xl border border-slate-800 overflow-hidden shadow-lg transition-all hover:border-slate-700/80">
+                <div class="p-5 bg-gradient-to-r from-pink-500/10 to-red-500/10 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-pink-500/20 text-pink-400 rounded-lg">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-pink-400 font-bold uppercase tracking-wider">Eixo 03</span>
+                            <h3 class="text-base font-bold text-white">Massas e Totalitarismo</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 flex-1 flex flex-col gap-4">
+                    <!-- Conceito 1 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n3-1')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span>
+                                As Massas e o Estado Nazista
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n3-1" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n3-1" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p>Análise da conformação social onde as massas abandonam o julgamento crítico individual e se submetem à engrenagem totalitária.</p>
+                            <p>O indivíduo descaracteriza-se para pertencer ao corpo coletivo unificado pelas diretrizes de um líder ou partido autocrático.</p>
+                        </div>
+                    </div>
+
+                    <!-- Conceito 2 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n3-2')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span>
+                                Hannah Arendt: Banalidade do Mal
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n3-2" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n3-2" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p>O mal não decorre obrigatoriamente de um caráter puramente demoníaco ou sádico, mas do <strong class="text-white">vazio de pensamento</strong> e da burocratização da vida.</p>
+                            <p class="text-slate-300 font-semibold mt-2">Engrenagem do Mal:</p>
+                            <p>Ocorre quando indivíduos comuns apenas executam tarefas de forma sistemática, sem questionar suas consequências éticas morais diretas ou indiretas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Conceito 3 -->
+                    <div class="card-node bg-slate-900 border border-slate-800 rounded-xl p-4 transition-all">
+                        <div class="flex justify-between items-start cursor-pointer" onclick="toggleNode('n3-3')">
+                            <h4 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span>
+                                Metacognição & Pensar Crítico
+                            </h4>
+                            <i data-lucide="chevron-down" id="icon-n3-3" class="w-4 h-4 text-slate-500 transition-transform"></i>
+                        </div>
+                        <div id="n3-3" class="mt-3 text-xs text-slate-400 space-y-2 border-t border-slate-800/60 pt-3">
+                            <p><strong class="text-slate-300">A urgência de pensar além do senso comum:</strong> O pensamento reflexivo (pensar sobre o próprio pensar - metacognição) é a única ferramenta de defesa moral eficaz contra a adesão cega aos regimes de massas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Seção Conclusiva e Síntese -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-md flex flex-col gap-4">
+            <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                <i data-lucide="git-commit" class="w-5 h-5 text-indigo-400"></i>
+                Linha de Conexão Filosófica
+            </h3>
+            <div class="relative pl-6 border-l-2 border-indigo-500/30 space-y-4 text-sm text-slate-400">
+                <div>
+                    <span class="text-indigo-400 font-semibold">1. Convivência e Regras:</span> O homem passa de seu estado livre e inseguro (Hobbes) para o estado político regulamentado para garantir sobrevivência mútua.
+                </div>
+                <div>
+                    <span class="text-indigo-400 font-semibold">2. Responsabilidade Pessoal:</span> Dentro desse estado, o agir se qualifica ética e individualmente através do entendimento da circunstância (Ortega y Gasset), que compõe nossa própria identidade.
+                </div>
+                <div>
+                    <span class="text-indigo-400 font-semibold">3. O Colapso Ético:</span> Quando o homem abdica dessa sua consciência individual circunstancial para se dissolver nas ações automáticas das massas, abre-se espaço para a banalidade do mal (Hannah Arendt).
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>Esquematizado a partir de anotações originais manuscritas.</p>
+            <p class="flex items-center gap-1">Desenvolvido com <i data-lucide="heart" class="w-3 h-3 text-red-500 fill-current"></i> para estudos filosóficos.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // Inicializa Lucide Icons
+        lucide.createIcons();
+
+        // Controladores de visibilidade dos nós
+        function toggleNode(id) {
+            const node = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (node.classList.contains('hidden')) {
+                node.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                node.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function expandirTodos() {
+            const nodes = ['n1-1', 'n1-2', 'n1-3', 'n2-1', 'n2-2', 'n3-1', 'n3-2', 'n3-3'];
+            nodes.forEach(id => {
+                const el = document.getElementById(id);
+                const icon = document.getElementById('icon-' + id);
+                if (el && icon) {
+                    el.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        }
+
+        function recolherTodos() {
+            const nodes = ['n1-1', 'n1-2', 'n1-3', 'n2-1', 'n2-2', 'n3-1', 'n3-2', 'n3-3'];
+            nodes.forEach(id => {
+                const el = document.getElementById(id);
+                const icon = document.getElementById('icon-' + id);
+                if (el && icon) {
+                    el.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+
+        // Por padrão, começa tudo expandido para melhor legibilidade
+        window.onload = function() {
+            expandirTodos();
+        }
+    </script>
+</body>
+</html>
+
+```
+
